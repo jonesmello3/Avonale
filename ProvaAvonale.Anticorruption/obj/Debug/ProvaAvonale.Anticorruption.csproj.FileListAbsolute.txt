@@ -1,0 +1,15 @@
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\bin\Debug\ProvaAvonale.Anticorruption.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\bin\Debug\ProvaAvonale.Anticorruption.pdb
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\bin\Debug\Newtonsoft.Json.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\bin\Debug\ProvaAvonale.Domain.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\bin\Debug\RestEase.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\bin\Debug\ProvaAvonale.Domain.pdb
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\bin\Debug\Newtonsoft.Json.xml
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\bin\Debug\RestEase.xml
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\obj\Debug\ProvaAvonale.Anticorruption.csprojAssemblyReference.cache
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\obj\Debug\ProvaAvonale.Anticorruption.csproj.CoreCompileInputs.cache
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\obj\Debug\ProvaAvonale.Anticorruption.csproj.CopyComplete
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\obj\Debug\ProvaAvonale.Anticorruption.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\obj\Debug\ProvaAvonale.Anticorruption.pdb
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\bin\Debug\ProvaAvonale.ApplicationService.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\bin\Debug\ProvaAvonale.ApplicationService.pdb

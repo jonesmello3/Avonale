@@ -1,0 +1,6 @@
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Domain\bin\Debug\ProvaAvonale.Domain.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Domain\bin\Debug\ProvaAvonale.Domain.pdb
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Domain\obj\Debug\ProvaAvonale.Domain.csprojAssemblyReference.cache
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Domain\obj\Debug\ProvaAvonale.Domain.csproj.CoreCompileInputs.cache
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Domain\obj\Debug\ProvaAvonale.Domain.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Domain\obj\Debug\ProvaAvonale.Domain.pdb

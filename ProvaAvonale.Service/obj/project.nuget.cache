@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "mm3gvzNl5sJI/rXp3Krx4fXjtLma0jgLkWsc0vqhblHKdTWbcDuhW8Uo/F6cBW3yry+/3FeceRORefwej5olUg==",
+  "success": true,
+  "projectFilePath": "G:\\ProvaAvonale\\ProvaAvonale\\ProvaAvonale.Service\\ProvaAvonale.Service.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\joao_\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\joao_\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

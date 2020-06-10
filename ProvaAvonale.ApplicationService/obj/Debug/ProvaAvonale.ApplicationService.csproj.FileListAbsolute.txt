@@ -1,0 +1,9 @@
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\bin\Debug\ProvaAvonale.ApplicationService.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\bin\Debug\ProvaAvonale.ApplicationService.pdb
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\bin\Debug\Newtonsoft.Json.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\bin\Debug\Newtonsoft.Json.xml
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\obj\Debug\ProvaAvonale.ApplicationService.csprojAssemblyReference.cache
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\obj\Debug\ProvaAvonale.ApplicationService.csproj.CoreCompileInputs.cache
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\obj\Debug\ProvaAvonale.ApplicationService.csproj.CopyComplete
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\obj\Debug\ProvaAvonale.ApplicationService.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\obj\Debug\ProvaAvonale.ApplicationService.pdb
