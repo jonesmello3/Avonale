@@ -1,0 +1,86 @@
+﻿using Newtonsoft.Json;
+using ProvaAvonale.ApplicationService.Interfaces;
+using ProvaAvonale.ApplicationService.Models;
+using ProvaAvonale.Domain.Entities;
+using ProvaAvonale.Domain.Entities.Auxiliar;
+using ProvaAvonale.Domain.Interfaces.Service;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace ProvaAvonale.ApplicationService.Applications
+{
+    public class RepositorioApplicationService : ApplicationServiceBase<Repositorio>, IRepositorioApplicationService
+    {
+        #region Variáveis
+        private readonly IRepositorioService repositorioService;
+        #endregion
+
+        #region Construtor
+        public RepositorioApplicationService(IRepositorioService repositorioService) : base(repositorioService)
+        {
+            this.repositorioService = repositorioService;
+        }
+        #endregion
+
+        #region ListarRepositoriosPublicos
+        public async Task<Response> ListarRepositoriosPublicos()
+        {
+            try
+            {
+                var json = await repositorioService.ListarRepositoriosPublicos();
+                return new Response { Success = true, Data = json };
+            }
+            catch (Exception ex)
+            {
+                return new Response { Message = ex.Message, Error = ex };
+            }
+        }
+        #endregion
+
+        #region ListarRepositoriosUsuario
+        public async Task<Response> ListarRepositoriosUsuario(string userName)
+        {
+            try
+            {
+                var json = await repositorioService.ListarRepositoriosUsuario(userName);
+                return new Response { Success = true, Data = json };
+            }
+            catch (Exception ex)
+            {
+                return new Response { Message = ex.Message, Error = ex };
+            }
+        }
+        #endregion
+
+        #region PesquisarRepositoriosPorNome
+        public async Task<Response> PesquisarRepositoriosPorNome(string nome)
+        {
+            try
+            {
+                var json = await repositorioService.ListarRepositoriosUsuario(nome);
+                return new Response { Success = true, Data = json };
+            }
+            catch (Exception ex)
+            {
+                return new Response { Message = ex.Message, Error = ex };
+            }
+        }
+        #endregion
+
+        #region ObterRepositoriosPorId
+        public async Task<Response> ObterRepositoriosPorId(int id)
+        {
+            try
+            {
+                var json = await repositorioService.ObterRepositorioPorId(id);
+                return new Response { Success = true, Data = json };
+            }
+            catch (Exception ex)
+            {
+                return new Response { Message = ex.Message, Error = ex };
+            }
+        }
+        #endregion
+    }
+}

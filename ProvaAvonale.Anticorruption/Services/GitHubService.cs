@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using ProvaAvonale.Anticorruption.Interfaces;
 using ProvaAvonale.ApplicationService.Models;
 using ProvaAvonale.Domain.Entities;
@@ -24,88 +23,40 @@ namespace ProvaAvonale.Anticorruption.Services
 
         public async Task<IEnumerable<Repositorio>> ListarRepositoriosPublicos()
         {
-            List<Repositorio> listaRepositorios = new List<Repositorio>();
-
             try
             {
-                //var url = "repositories?since=" + paginacao;
-                //HttpClient client = new HttpClient();
-                //Repositorio repositorio = null;
-                //HttpResponseMessage response = await client.GetAsync(BaseUrl + url);
+               
+                Uri baseUri = new Uri(BaseUrl);
+                var clientHandler = new HttpClientHandler();
+                HttpClient client = new HttpClient(clientHandler);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                //if (response.IsSuccessStatusCode)
-                //{
-                //    repositorio = await response.Content.ReadAsAsync<Repositorio>();
-                //}
-                //return product;
+                ProductHeaderValue header = new ProductHeaderValue("jonesmello", Assembly.GetExecutingAssembly().GetName().Version.ToString());
+                ProductInfoHeaderValue userAgent = new ProductInfoHeaderValue(header);
+                client.DefaultRequestHeaders.UserAgent.Add(userAgent);
 
-                //HttpClient cliente = new HttpClient();
-                //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, BaseUrl);
-                //cliente.DefaultRequestHeaders.Accept.Add(re);
+                client.BaseAddress = baseUri;
+                HttpResponseMessage response = await client.GetAsync(baseUri);
 
-                //HttpResponseMessage response = HttpInstance.GetHttpClientInstance().SendAsync(request).Result;
+                IEnumerable<Repositorio> listaRepositorios = new List<Repositorio>();
+        
+                if (response.IsSuccessStatusCode)
+                {
+                        var jsonString = await response.Content.ReadAsStringAsync();
+                        var json =  JsonConvert.DeserializeObject<List<RepositorioDTO>>(jsonString);
+                }
+                else
+                {
+                    Console.WriteLine(response.Content);
+                }
 
-                //HttpWebRequest request = WebRequest.Create(BaseUrl) as HttpWebRequest;
-                //request.UserAgent = "jonesmello";
-                
-
-            //using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
-            //{
-            //    foreach (var item in response)
-            //    {
-
-            //    }
-
-            //    StreamReader reader = new StreamReader(response.GetResponseStream());
-            //    String content1 = reader.ReadToEnd();
-            //    Console.WriteLine(content1);
-
-            //}
-            Uri baseUri = new Uri(BaseUrl);
-            var clientHandler = new HttpClientHandler();
-            // clientHandler.CookieContainer.Add(baseUri, new Cookie("name", "value"));
-            HttpClient client = new HttpClient(clientHandler);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            ProductHeaderValue header = new ProductHeaderValue("jonesmello", Assembly.GetExecutingAssembly().GetName().Version.ToString());
-            ProductInfoHeaderValue userAgent = new ProductInfoHeaderValue(header);
-            client.DefaultRequestHeaders.UserAgent.Add(userAgent);
-
-
-            client.BaseAddress = baseUri;
-            HttpResponseMessage response = await client.GetAsync(baseUri);
-
-            if (response.IsSuccessStatusCode)
-            {
-              
-                    // JArray repoJson = (JArray)JObject.Parse(response.Content.ReadAsStringAsync().Result)[];
-                    //var repoJson = await JsonConvert.SerializeObject(response.Content.ReadAsStringAsync());
-
-
-                    var jsonString = await response.Content.ReadAsStringAsync();
-                    var repoJson =  JsonConvert.DeserializeObject<List<RepositorioDTO>>(jsonString);
-                    
-
-                    foreach (var item in repoJson )
-                    {
-                        listaRepositorios.Add(new Repositorio { Nome = "full_name", Descricao = "description" });
-                    }
-             
-            }
-            else
-            {
-                Console.WriteLine(response.Content);
-            }
+                return listaRepositorios;
 
             }
             catch (Exception e)
             {
-
                 throw e;
             }
-
-
-            return listaRepositorios;
         }
 
         public IEnumerable<Repositorio> ListarRepositoriosUsuario(Usuario usuario)

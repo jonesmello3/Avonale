@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ProvaAvonale.WebApi.Models.ViewModel.RepositorioViewModel>
+
+@{
+    ViewBag.Title = "Repositórios";
+}
+
+<h2>Repositórios</h2>
+@using (Html.BeginForm("List", "Home", FormMethod.Get))
+{
+    <p>
+        <span>Pesquisar por nome</span>
+        <div class="col-md-8" style="padding-left: 0; padding-bottom: 10px;">
+            <div class="col-md-5" style="padding-left: 0;">
+                <input type="text" id="filtro" name="filtro" class="form-control" value="" />
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-primary" type="submit">Pesquisar</button>
+            </div>
+        </div>
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeCompleto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Privado)
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <a href="Detalhes/@item.Id">@Html.DisplayFor(modelItem => item.Nome)</a> 
+            @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id })*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeCompleto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Privado)
+        </td>
+    </tr>
+}
+
+</table>

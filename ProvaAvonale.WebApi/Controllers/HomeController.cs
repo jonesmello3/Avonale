@@ -1,31 +1,90 @@
-﻿using ProvaAvonale.Anticorruption.Services;
-using RestEase;
+﻿using AutoMapper;
+using ProvaAvonale.ApplicationService.Interfaces;
+using ProvaAvonale.Domain.Entities;
+using ProvaAvonale.Domain.Entities.Auxiliar;
+using ProvaAvonale.WebApi.Models.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace ProvaAvonale.WebApi.Controllers
 {
     public class HomeController : Controller
     {
-        [Header("User-Agent", "jonesmello3")]
+        #region Variáveis
+        private readonly IRepositorioApplicationService repositorioApplicationService; 
+        #endregion
+
+        #region Construtor
+        public HomeController(IRepositorioApplicationService repositorioApplicationService)
+        {
+            this.repositorioApplicationService = repositorioApplicationService;
+        } 
+        #endregion
+
+        #region Index
         public ActionResult Index()
         {
-            GitHubService gitHubService = new GitHubService();
-            var result = gitHubService.ListarRepositoriosPublicos();
             return View();
-        }
+        } 
+        #endregion
 
-        public ActionResult About()
+        #region List
+        [HttpGet]
+        public async Task<ActionResult> List()
         {
-            ViewBag.Message = "Your application description page.";
+            var filtro = Request.QueryString["filtro"];
 
-            return View();
-        }
+            Response response = new Response();
 
-        public ActionResult Contact()
+            if (String.IsNullOrEmpty(filtro))
+            {
+                response = await repositorioApplicationService.ListarRepositoriosPublicos();
+            }
+            else
+            {
+                response = await repositorioApplicationService.PesquisarRepositoriosPorNome(filtro);
+            }
+
+            var result = ((IEnumerable<Repositorio>)response.Data).Cast<Repositorio>().ToList();
+            var clienteViewModel = Mapper.Map<IEnumerable<Repositorio>, IEnumerable<RepositorioViewModel>>(result);
+            return View(clienteViewModel);
+        } 
+        #endregion
+
+        #region ListarRepositoriosUsuario
+        public async Task<ActionResult> ListarRepositoriosUsuario()
         {
-            ViewBag.Message = "Your contact page.";
+            var userName = "jonesMello3";
+            var te = await repositorioApplicationService.ListarRepositoriosUsuario(userName);
+            var result = ((IEnumerable<Repositorio>)te.Data).Cast<Repositorio>().ToList();
+            var clienteViewModel = Mapper.Map<IEnumerable<Repositorio>, IEnumerable<RepositorioViewModel>>(result);
+            return View(clienteViewModel);
+        } 
+        #endregion
 
-            return View();
+        #region PesquisarRepositoriosPorNome
+        public async Task<ActionResult> PesquisarRepositoriosPorNome(string filtro)
+        {
+            var te = await repositorioApplicationService.PesquisarRepositoriosPorNome(filtro);
+            var result = ((IEnumerable<Repositorio>)te.Data).Cast<Repositorio>().ToList();
+            var clienteViewModel = Mapper.Map<IEnumerable<Repositorio>, IEnumerable<RepositorioViewModel>>(result);
+            return View(clienteViewModel);
         }
+        #endregion
+
+        #region Detalhes
+        public async Task<ActionResult> Detalhes(int id)
+        {
+            var repositorio = await repositorioApplicationService.ObterRepositoriosPorId(id);
+            //var result = (repositorio.Data).Cast<Repositorio>();
+            var t = (Repositorio)Convert.ChangeType(repositorio.Data, typeof(Repositorio));
+            var clienteViewModel = Mapper.Map<Repositorio, RepositorioViewModel>(t);
+            return View(clienteViewModel);
+            /// repos /:owner /:repo / collaborators
+        } 
+        #endregion
     }
 }

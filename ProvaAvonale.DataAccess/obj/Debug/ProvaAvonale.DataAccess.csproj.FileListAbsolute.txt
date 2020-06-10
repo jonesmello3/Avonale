@@ -1,0 +1,16 @@
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\bin\Debug\ProvaAvonale.DataAccess.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\bin\Debug\ProvaAvonale.DataAccess.pdb
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\obj\Debug\ProvaAvonale.DataAccess.csprojAssemblyReference.cache
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\obj\Debug\ProvaAvonale.DataAccess.csproj.CoreCompileInputs.cache
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\obj\Debug\ProvaAvonale.DataAccess.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\obj\Debug\ProvaAvonale.DataAccess.pdb
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\bin\Debug\ProvaAvonale.DataAccess.dll.config
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\bin\Debug\EntityFramework.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\bin\Debug\ProvaAvonale.Domain.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\bin\Debug\ProvaAvonale.Domain.pdb
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\bin\Debug\EntityFramework.xml
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\obj\Debug\ProvaAvonale.DataAccess.csproj.CopyComplete
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\bin\Debug\Newtonsoft.Json.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.DataAccess\bin\Debug\Newtonsoft.Json.xml

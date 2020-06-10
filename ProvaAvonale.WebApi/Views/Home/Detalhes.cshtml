@@ -1,0 +1,54 @@
+﻿@model ProvaAvonale.WebApi.Models.ViewModel.RepositorioViewModel
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>RepositorioViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeCompleto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeCompleto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner.Login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CollaboratorsUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CollaboratorsUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LanguagesUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LanguagesUrl)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

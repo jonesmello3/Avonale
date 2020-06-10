@@ -7,3 +7,10 @@ G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\obj\Debug\ProvaAvon
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\obj\Debug\ProvaAvonale.ApplicationService.csproj.CopyComplete
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\obj\Debug\ProvaAvonale.ApplicationService.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\obj\Debug\ProvaAvonale.ApplicationService.pdb
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\bin\Debug\ProvaAvonale.Domain.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\bin\Debug\ProvaAvonale.Domain.pdb
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\bin\Debug\AutoMapper.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\bin\Debug\System.ValueTuple.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\bin\Debug\AutoMapper.pdb
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\bin\Debug\AutoMapper.xml
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.ApplicationService\bin\Debug\System.ValueTuple.xml

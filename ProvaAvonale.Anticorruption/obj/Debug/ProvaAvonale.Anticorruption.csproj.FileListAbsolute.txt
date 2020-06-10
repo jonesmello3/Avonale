@@ -13,3 +13,4 @@ G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\obj\Debug\ProvaAvonale.
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\obj\Debug\ProvaAvonale.Anticorruption.pdb
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\bin\Debug\ProvaAvonale.ApplicationService.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\bin\Debug\ProvaAvonale.ApplicationService.pdb
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Anticorruption\bin\Debug\ProvaAvonale.Anticorruption.dll.config

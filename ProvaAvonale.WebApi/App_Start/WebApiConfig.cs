@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
+using System.Web.Http.Cors;
+using System.Web.Http.Routing.Constraints;
 
 namespace ProvaAvonale.WebApi
 {
@@ -11,11 +10,20 @@ namespace ProvaAvonale.WebApi
         {
             config.MapHttpAttributeRoutes();
 
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+              "Guid",
+              "{controller}/{id}",
+              new { controller = "Home", action = "Index", id = RouteParameter.Optional },
+              new { id = new GuidRouteConstraint() }
+           );
         }
     }
 }
