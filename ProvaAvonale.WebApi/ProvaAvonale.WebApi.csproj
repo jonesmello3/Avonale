@@ -179,6 +179,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ArquivoJson\RepositoriosFavoritos.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -207,11 +208,11 @@
     <Content Include="Views\Home\List.cshtml" />
     <Content Include="Views\Home\ListarRepositoriosUsuario.cshtml" />
     <Content Include="Views\Home\Detalhes.cshtml" />
+    <Content Include="Views\Home\Favoritos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Repositorio\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

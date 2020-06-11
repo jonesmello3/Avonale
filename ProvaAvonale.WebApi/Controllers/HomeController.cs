@@ -79,12 +79,30 @@ namespace ProvaAvonale.WebApi.Controllers
         public async Task<ActionResult> Detalhes(int id)
         {
             var repositorio = await repositorioApplicationService.ObterRepositoriosPorId(id);
-            //var result = (repositorio.Data).Cast<Repositorio>();
             var t = (Repositorio)Convert.ChangeType(repositorio.Data, typeof(Repositorio));
             var clienteViewModel = Mapper.Map<Repositorio, RepositorioViewModel>(t);
             return View(clienteViewModel);
-            /// repos /:owner /:repo / collaborators
-        } 
+        }
+        #endregion
+
+        #region AdicionarRepositorioAosFavoritos
+        public async Task<ActionResult> AdicionarRepositorioAosFavoritos(int id)
+        {
+            var repositorio = await repositorioApplicationService.AdicionarRepositorioAosFavoritos(id);
+            var t = (Repositorio)Convert.ChangeType(repositorio.Data, typeof(Repositorio));
+            var clienteViewModel = Mapper.Map<Repositorio, RepositorioViewModel>(t);
+            return RedirectToRoute(new { controller = "Home", action = "List" });
+        }
+        #endregion
+
+        #region MostrarFavoritos
+        public ActionResult MostrarFavoritos()
+        {
+            var repositorio = repositorioApplicationService.MostrarFavoritos();
+            var result = ((IEnumerable<Repositorio>)repositorio.Data).Cast<Repositorio>().ToList();
+            var clienteViewModel = Mapper.Map<IEnumerable<Repositorio>, IEnumerable<RepositorioViewModel>>(result);
+            return View(clienteViewModel);
+        }
         #endregion
     }
 }

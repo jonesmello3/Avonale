@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<ProvaAvonale.WebApi.Models.ViewModel.RepositorioViewModel>
 
 @{
-    ViewBag.Title = "Repositórios Usuário";
+    ViewBag.Title = "Favoritos";
 }
 
-    <h2>Repositórios Usuário</h2>
+<h2>Favoritos</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -20,19 +20,30 @@
         <th>
             @Html.DisplayNameFor(model => model.Descricao)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataAtualizacao)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            <a href="Detalhes/@item.Id">@Html.DisplayFor(modelItem => item.Nome)</a>
-</td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Privado)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Descricao)
+        </td>
+       <td>
+            @Html.DisplayFor(modelItem => item.DataAtualizacao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

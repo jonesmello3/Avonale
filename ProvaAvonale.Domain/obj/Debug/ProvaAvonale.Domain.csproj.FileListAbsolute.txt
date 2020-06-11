@@ -6,3 +6,4 @@ G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Domain\obj\Debug\ProvaAvonale.Domain.p
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Domain\bin\Debug\Newtonsoft.Json.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Domain\bin\Debug\Newtonsoft.Json.xml
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Domain\obj\Debug\ProvaAvonale.Domain.csproj.CopyComplete
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.Domain\obj\Debug\ProvaAvonale.Domain.csprojAssemblyReference.cache

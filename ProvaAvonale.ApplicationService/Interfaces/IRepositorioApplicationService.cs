@@ -10,5 +10,7 @@ namespace ProvaAvonale.ApplicationService.Interfaces
         Task<Response> ListarRepositoriosUsuario(string userName);
         Task<Response> PesquisarRepositoriosPorNome(string nome);
         Task<Response> ObterRepositoriosPorId(int id);
+        Task<Response> AdicionarRepositorioAosFavoritos(int id);
+        Response MostrarFavoritos();
     }
 }

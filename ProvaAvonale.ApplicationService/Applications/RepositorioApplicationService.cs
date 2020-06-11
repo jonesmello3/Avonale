@@ -58,7 +58,7 @@ namespace ProvaAvonale.ApplicationService.Applications
         {
             try
             {
-                var json = await repositorioService.ListarRepositoriosUsuario(nome);
+                var json = await repositorioService.PesquisarRepositoriosPorNome(nome);
                 return new Response { Success = true, Data = json };
             }
             catch (Exception ex)
@@ -81,6 +81,28 @@ namespace ProvaAvonale.ApplicationService.Applications
                 return new Response { Message = ex.Message, Error = ex };
             }
         }
+        #endregion
+
+        #region AdicionarRepositorioAosFavoritos
+        public async Task<Response> AdicionarRepositorioAosFavoritos(int id)
+        {
+            try
+            {
+                var s = await repositorioService.AdicionarRepositorioAosFavoritos(id);
+                return new Response { Success = true, Data = null };
+            }
+            catch (Exception ex)
+            {
+                return new Response { Message = ex.Message, Error = ex };
+            }
+        }
+        #endregion
+
+        #region MostrarFavoritos
+        public Response MostrarFavoritos()
+        {
+            throw new NotImplementedException();
+        } 
         #endregion
     }
 }

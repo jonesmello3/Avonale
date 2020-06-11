@@ -26,33 +26,39 @@
             @Html.DisplayNameFor(model => model.Nome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NomeCompleto)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Descricao)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Privado)
         </th>
+        <th>
+            <label>Favoritos</label>
+        </th>
     </tr>
 
 @foreach (var item in Model)
 {
-    <tr>
-        <td>
-            <a href="Detalhes/@item.Id">@Html.DisplayFor(modelItem => item.Nome)</a> 
-            @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id })*@
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeCompleto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Privado)
-        </td>
-    </tr>
+<tr>
+    <td>
+        <a href="Detalhes/@item.Id">@Html.DisplayFor(modelItem => item.Nome)</a>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Descricao)
+    </td>
+    <td>
+        @{ var privado = item.Privado.Equals("true") ? "Sim" : "Não"; }
+        <label style="padding-left: 10px; font-weight: 100;">@privado</label>
+    </td>
+    <td style="text-align: center;">
+        @*@using (Html.BeginForm("AdicionarRepositorioAosFavoritos", "Home", FormMethod.Post))
+        {
+            <input type="checkbox" id="favoritos" name="favoritos" class="form-group" />
+        }*@
+        @{ var url = Url.Action("AdicionarRepositorioAosFavoritos", "Home", new { id = item.Id }, null);
+        }
+        @Html.CheckBox("mycheckbox", new { onclick = "window.location = '" + url + "'" })
+    </td>
+</tr>
 }
 
 </table>

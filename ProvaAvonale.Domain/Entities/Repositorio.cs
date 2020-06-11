@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 
 namespace ProvaAvonale.Domain.Entities
 {
@@ -82,6 +83,9 @@ namespace ProvaAvonale.Domain.Entities
 
         [JsonProperty("languages_url")]
         public string LanguagesUrl { get; set; }
+        
+        [JsonProperty("linguagens")]
+        public IEnumerable<Linguagem> Linguagens { get; set; }
 
         [JsonProperty("stargazers_url")]
         public string StargazersUrl { get; set; }
@@ -142,8 +146,14 @@ namespace ProvaAvonale.Domain.Entities
 
         [JsonProperty("deployments_url")]
         public string DeploymentsUrl { get; set; }
-
-        public DateTime? DataAtualizacao { get; set; }
+        
+        [JsonProperty("updated_at")] 
+        public DateTime DataAtualizacao { get; set; }
+        
+        [JsonProperty("created_at")]
         public DateTime DataCadastro { get; set; }
+
+        [JsonProperty("contribuidores")]
+        public IEnumerable<Contribuidor> Contribuidores { get; set; }
     }
 }

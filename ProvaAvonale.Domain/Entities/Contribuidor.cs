@@ -1,10 +1,15 @@
-﻿namespace ProvaAvonale.Domain.Entities
+﻿using Newtonsoft.Json;
+
+namespace ProvaAvonale.Domain.Entities
 {
     public class Contribuidor
     {
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string Owner { get; set; }
-        public string Repositorio { get; set; }
+        public string Login { get; set; }
+
+        [JsonProperty("site_admin")]
+        public string Admin { get; set; }
+        
+        [JsonProperty("contributions")]
+        public int Contribuicoes { get; set; }
     }
 }

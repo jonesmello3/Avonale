@@ -1,4 +1,7 @@
 ﻿using ProvaAvonale.ApplicationService.Models;
+using ProvaAvonale.Domain.Entities;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ProvaAvonale.WebApi.Models.ViewModel
@@ -58,9 +61,12 @@ namespace ProvaAvonale.WebApi.Models.ViewModel
 
         public string LanguagesUrl { get; set; }
 
+        public IEnumerable<Linguagem> Linguagens { get; set; }
+
         public string StargazersUrl { get; set; }
 
         public string ContributorsUrl { get; set; }
+        public IEnumerable<Contribuidor> Contribuidores { get; set; }
 
         public string SubscribersUrl { get; set; }
 
@@ -97,5 +103,6 @@ namespace ProvaAvonale.WebApi.Models.ViewModel
         public string ReleasesUrl { get; set; }
 
         public string DeploymentsUrl { get; set; }
+        public DateTime DataAtualizacao { get; set; }
     }
 }

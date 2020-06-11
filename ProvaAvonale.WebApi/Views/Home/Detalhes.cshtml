@@ -7,15 +7,14 @@
 <h2>Detalhes</h2>
 
 <div>
-    <h4>RepositorioViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.NomeCompleto)
+            @Html.DisplayNameFor(model => model.Nome)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NomeCompleto)
+            @Html.DisplayFor(model => model.Nome)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Descricao)
@@ -24,8 +23,21 @@
         <dd>
             @Html.DisplayFor(model => model.Descricao)
         </dd>
+
         <dt>
-            @Html.DisplayNameFor(model => model.Owner)
+            <label>Linguagem</label>
+        </dt>
+
+        <dd>
+            @{foreach (var item in Model.Linguagens)
+              {
+                @Html.DisplayFor(model => item.Descricao)
+              }
+            }
+        </dd>
+
+        <dt>
+            <label>Proprietário</label>
         </dt>
 
         <dd>
@@ -33,21 +45,49 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CollaboratorsUrl)
+            <label>Atualizado em</label>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CollaboratorsUrl)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LanguagesUrl)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LanguagesUrl)
+            @Html.DisplayFor(model => model.DataAtualizacao)
         </dd>
     </dl>
+    <br/>
+    <h2>Contribuidores do Repositório</h2>
+    <table class="table">
+        <tr>
+            <th>
+                <label>Login</label>
+            </th>
+            <th>
+                <lable>Número de Contribuições</lable>
+            </th>
+            <th>
+                <label>Admin</label>
+            </th>
+        </tr>
+
+        @if (Model.Contribuidores != null)
+        {
+            foreach (var item in Model.Contribuidores)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Login)
+                    </td>
+                    <td>
+                        <label style="padding-left: 57px; font-weight: 100;">@Html.DisplayFor(modelItem => item.Contribuicoes)</label>
+                    </td>
+                    <td>
+                        @{ var admin = item.Admin.Equals("true") ? "Sim" : "Não"; }
+                        <label style="padding-left: 10px; font-weight: 100;">@admin</label>
+                    </td>
+                </tr>
+            }
+        }
+
+
+    </table>
 </div>
 <p>
     @Html.ActionLink("Back to List", "Index")
