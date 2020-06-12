@@ -100,8 +100,8 @@ namespace ProvaAvonale.WebApi.Controllers
         }
         #endregion
 
-        #region MostrarFavoritos
-        public ActionResult MostrarFavoritos()
+        #region Favoritos
+        public ActionResult Favoritos()
         {
             var repositorio = repositorioApplicationService.MostrarFavoritos();
             if (repositorio.Data != null)
