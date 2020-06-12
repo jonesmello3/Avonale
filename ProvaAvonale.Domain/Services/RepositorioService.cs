@@ -43,18 +43,9 @@ namespace ProvaAvonale.Domain.Services
         #region ListarRepositoriosPublicos
         public async Task<List<Repositorio>> ListarRepositoriosPublicos()
         {
-            var url = "repositories";
-            Uri baseUri = new Uri(BaseUrl + url);
-            var clientHandler = new HttpClientHandler();
-            HttpClient client = new HttpClient(clientHandler);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            ProductHeaderValue header = new ProductHeaderValue("jonesmello3", Assembly.GetExecutingAssembly().GetName().Version.ToString());
-            ProductInfoHeaderValue userAgent = new ProductInfoHeaderValue(header);
-            client.DefaultRequestHeaders.UserAgent.Add(userAgent);
-
-            client.BaseAddress = baseUri;
-            HttpResponseMessage response = await client.GetAsync(baseUri);
+            var url = BaseUrl + "repositories";
+            var client = ConfigurarGit(url);
+            HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
 
             if (response.IsSuccessStatusCode)
             {
@@ -86,47 +77,21 @@ namespace ProvaAvonale.Domain.Services
         #region PesquisarRepositoriosPorNome
         public async Task<IEnumerable<Repositorio>> PesquisarRepositoriosPorNome(string nome)
         {
-            var url = "search/repositories?q=" + nome;
-            Uri baseUri = new Uri(BaseUrl + url);
-            var clientHandler = new HttpClientHandler();
-            HttpClient client = new HttpClient(clientHandler);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            ProductHeaderValue header = new ProductHeaderValue("jonesmello3", Assembly.GetExecutingAssembly().GetName().Version.ToString());
-            ProductInfoHeaderValue userAgent = new ProductInfoHeaderValue(header);
-            client.DefaultRequestHeaders.UserAgent.Add(userAgent);
-
-            client.BaseAddress = baseUri;
-            HttpResponseMessage response = await client.GetAsync(baseUri);
-
-            List<Repositorio> listaRepositorios = new List<Repositorio>();
+            var url = BaseUrl + "search/repositories?q=" + nome;
+            var client = ConfigurarGit(url);
+            HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
 
             if (response.IsSuccessStatusCode)
             {
                 JArray repositorios = (JArray)JObject.Parse(response.Content.ReadAsStringAsync().Result)["items"];
 
-                foreach (var repositorio in repositorios)
-                {
-                    listaRepositorios.Add(new Repositorio
-                    {
-                        Id = Convert.ToInt32(repositorio["id"].ToString()),
-                        Nome = repositorio["name"].ToString(),
-                        NomeCompleto = repositorio["full_name"].ToString(),
-                        Privado = repositorio["private"].ToString(),
-                        Owner = new Owner
-                        {
-                            Login = repositorio["owner"]["login"].ToString(),
-                            Type = repositorio["owner"]["type"].ToString(),
-                            SiteAdmin = Convert.ToBoolean(repositorio["owner"]["site_admin"])
-                        },
-                        Descricao = repositorio["description"].ToString(),
-                        LanguagesUrl = repositorio["language"].ToString(),
-                    });
+                if (repositorios.Count() > 0) {
+                    var listaRepositorios = MontarListRepositorio(repositorios);
+
+                    PreenchendoJson(listaRepositorios);
+
+                    return listaRepositorios;
                 }
-
-                PreenchendoJson(listaRepositorios);
-
-                return listaRepositorios;
             }
 
             return null;
@@ -136,22 +101,13 @@ namespace ProvaAvonale.Domain.Services
         #region ObterColaboradoresRepositorio
         private IEnumerable<Contribuidor> ObterContribuidoreRepositorio(string url)
         {
-            Uri baseUri = new Uri(url);
-            var clientHandler = new HttpClientHandler();
-            HttpClient client = new HttpClient(clientHandler);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            ProductHeaderValue header = new ProductHeaderValue("jonesmello3", Assembly.GetExecutingAssembly().GetName().Version.ToString());
-            ProductInfoHeaderValue userAgent = new ProductInfoHeaderValue(header);
-            client.DefaultRequestHeaders.UserAgent.Add(userAgent);
-
-            client.BaseAddress = baseUri;
-            HttpResponseMessage response = client.GetAsync(baseUri).Result;
+            var client = ConfigurarGit(url);
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress).Result;
 
             if (response.IsSuccessStatusCode)
             {
-                var jsonString = response.Content.ReadAsStringAsync();
-                var contribuidor = JsonConvert.DeserializeObject<IEnumerable<Contribuidor>>(jsonString.Result);
+                var result = response.Content.ReadAsStringAsync();
+                var contribuidor = JsonConvert.DeserializeObject<IEnumerable<Contribuidor>>(result.Result);
                 return contribuidor;
             }
 
@@ -162,17 +118,8 @@ namespace ProvaAvonale.Domain.Services
         #region ObterLinguagem
         private IEnumerable<Linguagem> ObterLinguagem(string url)
         {
-            Uri baseUri = new Uri(url);
-            var clientHandler = new HttpClientHandler();
-            HttpClient client = new HttpClient(clientHandler);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            ProductHeaderValue header = new ProductHeaderValue("jonesmello3", Assembly.GetExecutingAssembly().GetName().Version.ToString());
-            ProductInfoHeaderValue userAgent = new ProductInfoHeaderValue(header);
-            client.DefaultRequestHeaders.UserAgent.Add(userAgent);
-
-            client.BaseAddress = baseUri;
-            HttpResponseMessage response = client.GetAsync(baseUri).Result;
+            var client = ConfigurarGit(url);
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress).Result;
 
             if (response.IsSuccessStatusCode)
             {
@@ -180,43 +127,7 @@ namespace ProvaAvonale.Domain.Services
 
                 if (jsonString.Result != "")
                 {
-                    var srtLimpa = jsonString.Result.Replace(" ", "").Replace("{", "").Replace("}", "").Replace("\"", "");
-                    List<Linguagem> linguagens = new List<Linguagem>();
-                    
-                    if (srtLimpa.IndexOf(",") > -1)
-                    {
-                        var arr = srtLimpa.Split(',');
-                        int cont = 0;
-
-                        foreach (var item in arr)
-                        {
-                            cont++;
-                            Linguagem linguagem = new Linguagem();
-                            var ar = item.Split(':');
-
-                            if (cont == arr.Length) 
-                            {
-                                linguagem.Descricao = ar[0] + " .";
-                            }
-                            else 
-                            {
-                                linguagem.Descricao = ar[0] + " ,";
-                            }
-
-                            linguagem.Id = Convert.ToInt32(ar[1]);
-
-                            linguagens.Add(linguagem);
-                        }
-                    }
-                    else
-                    {
-                        Linguagem linguagem = new Linguagem();
-                        var arr = srtLimpa.Split(':');
-                        linguagem.Descricao = arr[0];
-                        linguagem.Id = Convert.ToInt32(arr[1]);
-
-                        linguagens.Add(linguagem);
-                    }
+                    var linguagens = LimparJsonString(jsonString);
 
                     return linguagens;
                 }
@@ -229,18 +140,10 @@ namespace ProvaAvonale.Domain.Services
         #region ObterRepositorioPorId
         public async Task<Repositorio> ObterRepositorioPorId(int id)
         {
-            var url = "repositories/" + id;
-            Uri baseUri = new Uri(BaseUrl + url);
-            var clientHandler = new HttpClientHandler();
-            HttpClient client = new HttpClient(clientHandler);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            ProductHeaderValue header = new ProductHeaderValue("jonesmello3", Assembly.GetExecutingAssembly().GetName().Version.ToString());
-            ProductInfoHeaderValue userAgent = new ProductInfoHeaderValue(header);
-            client.DefaultRequestHeaders.UserAgent.Add(userAgent);
-
-            client.BaseAddress = baseUri;
-            HttpResponseMessage response = await client.GetAsync(baseUri);
+            var url = BaseUrl + "repositories/" + id;
+            
+            var client = ConfigurarGit(url);
+            HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
 
             if (response.IsSuccessStatusCode)
             {
@@ -260,18 +163,9 @@ namespace ProvaAvonale.Domain.Services
         #region ListarRepositoriosUsuario
         public async Task<IEnumerable<Repositorio>> ListarRepositoriosUsuario(string userName)
         {
-            var url = "users/" + userName + "/repos";
-            Uri baseUri = new Uri(BaseUrl + url);
-            var clientHandler = new HttpClientHandler();
-            HttpClient client = new HttpClient(clientHandler);
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            ProductHeaderValue header = new ProductHeaderValue("jonesmello3", Assembly.GetExecutingAssembly().GetName().Version.ToString());
-            ProductInfoHeaderValue userAgent = new ProductInfoHeaderValue(header);
-            client.DefaultRequestHeaders.UserAgent.Add(userAgent);
-
-            client.BaseAddress = baseUri;
-            HttpResponseMessage response = await client.GetAsync(baseUri);
+            var url = BaseUrl + "users/" + userName + "/repos";
+            var client = ConfigurarGit(url);
+            HttpResponseMessage response = await client.GetAsync(client.BaseAddress);
 
             if (response.IsSuccessStatusCode)
             {
@@ -347,7 +241,6 @@ namespace ProvaAvonale.Domain.Services
                 var repositorio = repositorios.FirstOrDefault(repos => repos.Id == id);
                 repositorios.Remove(repositorio);
             }
-           
 
             var repo = JsonConvert.SerializeObject(repositorios, Formatting.Indented);
 
@@ -362,7 +255,9 @@ namespace ProvaAvonale.Domain.Services
         }
         #endregion
 
-        private void PreenchendoJson(List<Repositorio> repositorios) {
+        #region PreenchendoJson
+        private void PreenchendoJson(List<Repositorio> repositorios)
+        {
             var pathArquivos = DiretorioVirtual.ObterDiretorioVirtual();
             var nomeArquivo = $"RepositoriosFavoritos.json";
             var caminho = $"{pathArquivos}{nomeArquivo}";
@@ -378,6 +273,98 @@ namespace ProvaAvonale.Domain.Services
                     }
                 }
             }
+        }
+        #endregion
+
+        #region ConfigurarGit
+        private HttpClient ConfigurarGit(string url)
+        {
+            Uri baseUri = new Uri(url);
+            var clientHandler = new HttpClientHandler();
+            HttpClient client = new HttpClient(clientHandler);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            ProductHeaderValue header = new ProductHeaderValue("jonesmello3", Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            ProductInfoHeaderValue userAgent = new ProductInfoHeaderValue(header);
+            client.DefaultRequestHeaders.UserAgent.Add(userAgent);
+
+            client.BaseAddress = baseUri;
+
+            return client;
+        }
+        #endregion
+
+        #region MontarListRepositorio
+        private List<Repositorio> MontarListRepositorio(JArray repositorios)
+        {
+            List<Repositorio> listaRepositorios = new List<Repositorio>();
+
+            foreach (var repositorio in repositorios)
+            {
+                listaRepositorios.Add(new Repositorio
+                {
+                    Id = Convert.ToInt32(repositorio["id"].ToString()),
+                    Nome = repositorio["name"].ToString(),
+                    NomeCompleto = repositorio["full_name"].ToString(),
+                    Privado = repositorio["private"].ToString(),
+                    Owner = new Owner
+                    {
+                        Login = repositorio["owner"]["login"].ToString(),
+                        Type = repositorio["owner"]["type"].ToString(),
+                        SiteAdmin = Convert.ToBoolean(repositorio["owner"]["site_admin"])
+                    },
+                    Descricao = repositorio["description"].ToString(),
+                    LanguagesUrl = repositorio["language"].ToString(),
+                });
+            }
+
+            return listaRepositorios;
+        }
+        #endregion
+
+        #region LimparJsonString
+        private List<Linguagem> LimparJsonString(Task<string> jsonString)
+        {
+            var srtLimpa = jsonString.Result.Replace(" ", "").Replace("{", "").Replace("}", "").Replace("\"", "");
+            List<Linguagem> linguagens = new List<Linguagem>();
+
+            if (srtLimpa.IndexOf(",") > -1)
+            {
+                var arr = srtLimpa.Split(',');
+                int cont = 0;
+
+                foreach (var item in arr)
+                {
+                    cont++;
+                    Linguagem linguagem = new Linguagem();
+                    var ar = item.Split(':');
+
+                    if (cont == arr.Length)
+                    {
+                        linguagem.Descricao = ar[0] + " .";
+                    }
+                    else
+                    {
+                        linguagem.Descricao = ar[0] + " ,";
+                    }
+
+                    linguagem.Id = Convert.ToInt32(ar[1]);
+
+                    linguagens.Add(linguagem);
+                }
+            }
+            else
+            {
+                Linguagem linguagem = new Linguagem();
+                var arr = srtLimpa.Split(':');
+                linguagem.Descricao = arr[0];
+                linguagem.Id = Convert.ToInt32(arr[1]);
+
+                linguagens.Add(linguagem);
+            }
+
+            return linguagens;
         } 
+        #endregion
     }
 }

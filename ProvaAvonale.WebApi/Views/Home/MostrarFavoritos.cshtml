@@ -17,8 +17,8 @@
         <th>
             @Html.DisplayNameFor(model => model.Descricao)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataAtualizacao)
+        <th style="width: 140px; text-align: center">
+            <label>Data Atualização</label>
         </th>
         <th></th>
     </tr>
@@ -37,7 +37,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Descricao)
                 </td>
-                <td>
+                <td style="text-align: center">
                     @Html.DisplayFor(modelItem => item.DataAtualizacao)
                 </td>
                 <td>

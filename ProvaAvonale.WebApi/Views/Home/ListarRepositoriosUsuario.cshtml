@@ -6,33 +6,38 @@
 
     <h2>Repositórios Usuário</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Privado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descricao)
-        </th>
-        <th></th>
-    </tr>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Privado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <a href="Detalhes/@item.Id">@Html.DisplayFor(modelItem => item.Nome)</a>
-        </td>
-        <td>
-            @{ var privado = item.Privado.Equals("true") ? "Sim" : "Não"; }
-            <label style="padding-left: 10px; font-weight: 100;">@privado</label>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Descricao)
-        </td>
-    </tr>
-}
+        @if (Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="Detalhes/@item.Id">@Html.DisplayFor(modelItem => item.Nome)</a>
+                    </td>
+                    <td>
+                        @{ var privado = item.Privado.Equals("true") ? "Sim" : "Não"; }
+                        <label style="padding-left: 10px; font-weight: 100;">@privado</label>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+                </tr>
+            }
+        }
 
-</table>
+
+    </table>

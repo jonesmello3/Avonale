@@ -17,12 +17,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nome do aplicativo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Início", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Listar", "List", "Home")</li>
+                    <li>@Html.ActionLink("Listar Repositórios", "List", "Home")</li>
                     <li>@Html.ActionLink("Meus Repositórios", "ListarRepositoriosUsuario", "Home")</li>
                     <li>@Html.ActionLink("Favoritos", "MostrarFavoritos", "Home")</li>
                 </ul>
@@ -33,7 +31,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Powered by Jones Meneses de Mello</p>
         </footer>
     </div>
 

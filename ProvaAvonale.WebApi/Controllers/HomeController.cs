@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.Ajax.Utilities;
 using PagedList;
 using ProvaAvonale.ApplicationService.Interfaces;
 using ProvaAvonale.Domain.Entities;
@@ -34,11 +35,23 @@ namespace ProvaAvonale.WebApi.Controllers
 
         #region List
         [HttpGet]
-        public async Task<ActionResult> List()
+        public async Task<ActionResult> List(string sortOrder, string searchString, string currentFilter, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
             var filtro = Request.QueryString["filtro"];
-            //int pageSize = 3;
-            //int pageNumber = (page ?? 1);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
 
             Response response = new Response();
 
@@ -51,9 +64,17 @@ namespace ProvaAvonale.WebApi.Controllers
                 response = await repositorioApplicationService.PesquisarRepositoriosPorNome(filtro);
             }
 
-            var result = ((IEnumerable<Repositorio>)response.Data).Cast<Repositorio>().ToList().OrderBy(re => re.Nome);
-            var clienteViewModel = Mapper.Map<IEnumerable<Repositorio>, IEnumerable<RepositorioViewModel>>(result);
-            return View(clienteViewModel);
+            if (response.Success && response.Data != null)
+            {
+                var result = ((IEnumerable<Repositorio>)response.Data).Cast<Repositorio>().ToList();
+                var clienteViewModel = Mapper.Map<IEnumerable<Repositorio>, IEnumerable<RepositorioViewModel>>(result).ToPagedList(pageNumber, pageSize);
+                return View(clienteViewModel);
+            }
+            else
+            {
+                return RedirectToRoute(new { controller = "Home", action = "List" });
+            }
+            
         } 
         #endregion
 
@@ -72,9 +93,16 @@ namespace ProvaAvonale.WebApi.Controllers
         public async Task<ActionResult> PesquisarRepositoriosPorNome(string filtro)
         {
             var repositorios = await repositorioApplicationService.PesquisarRepositoriosPorNome(filtro);
-            var result = ((IEnumerable<Repositorio>)repositorios.Data).Cast<Repositorio>().ToList();
-            var clienteViewModel = Mapper.Map<IEnumerable<Repositorio>, IEnumerable<RepositorioViewModel>>(result);
-            return View(clienteViewModel);
+
+            if (repositorios.Data != null) {
+                var result = ((IEnumerable<Repositorio>)repositorios.Data).Cast<Repositorio>().ToList();
+                var clienteViewModel = Mapper.Map<IEnumerable<Repositorio>, IEnumerable<RepositorioViewModel>>(result);
+                return View(clienteViewModel);
+            }
+            else
+            {
+                return RedirectToRoute(new { controller = "Home", action = "List" });
+            }
         }
         #endregion
 
@@ -96,13 +124,13 @@ namespace ProvaAvonale.WebApi.Controllers
         }
         #endregion
 
-        #region Favoritos
+        #region MostrarFavoritos
         public ActionResult MostrarFavoritos()
         {
             var repositorio = repositorioApplicationService.MostrarFavoritos();
             if (repositorio.Data != null)
             {
-                var result = ((IEnumerable<Repositorio>)repositorio.Data).Cast<Repositorio>().ToList();
+                var result = ((IEnumerable<Repositorio>)repositorio.Data).Cast<Repositorio>().ToList().OrderByDescending(repo => repo.DataAtualizacao);
                 var clienteViewModel = Mapper.Map<IEnumerable<Repositorio>, IEnumerable<RepositorioViewModel>>(result);
                 return View(clienteViewModel);
             }

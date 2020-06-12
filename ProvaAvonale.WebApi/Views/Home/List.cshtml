@@ -1,4 +1,6 @@
-﻿@model IEnumerable<ProvaAvonale.WebApi.Models.ViewModel.RepositorioViewModel>
+﻿@model PagedList.IPagedList<ProvaAvonale.WebApi.Models.ViewModel.RepositorioViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Repositórios";
@@ -23,46 +25,50 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Nome)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Nome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descricao)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Descricao)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Privado)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().Privado)
         </th>
         <th>
             <label>Favoritos</label>
         </th>
     </tr>
+    @{var lista = Model; }
+    @foreach (var item in lista)
+    {
+        <tr>
+            <td>
+                <a href="Detalhes/@item.Id">@Html.DisplayFor(modelItem => item.Nome)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @{ var privado = item.Privado.Equals("true") ? "Sim" : "Não"; }
+                <label style="padding-left: 10px; font-weight: 100;">@privado</label>
+            </td>
+            <td style="text-align: center;">
+                @{ var url = Url.Action("AdicionarRepositorioAosFavoritos", "Home", new { id = item.Id }, null);
+                    if (item.IsFavorito)
+                    {
+                        @Html.CheckBox("checkboxfavorito", new { @checked = true, @disabled = true })
+                    }
+                    else
+                    {
+                        @Html.CheckBox("checkboxfavorito", new { onclick = "window.location = '" + url + "'" })
+                    }
 
-@foreach (var item in Model)
-{
-<tr>
-    <td>
-        <a href="Detalhes/@item.Id">@Html.DisplayFor(modelItem => item.Nome)</a>
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Descricao)
-    </td>
-    <td>
-        @{ var privado = item.Privado.Equals("true") ? "Sim" : "Não"; }
-        <label style="padding-left: 10px; font-weight: 100;">@privado</label>
-    </td>
-    <td style="text-align: center;">
-        @{ var url = Url.Action("AdicionarRepositorioAosFavoritos", "Home", new { id = item.Id }, null);
-            if (item.IsFavorito)
-            {
-                @Html.CheckBox("checkboxfavorito", new { @checked = true, @disabled = true })
-            }
-            else
-            {
-                @Html.CheckBox("checkboxfavorito", new { onclick = "window.location = '" + url + "'" })
-            }
-
-        }
-    </td>
-</tr>
-}
+                }
+            </td>
+        </tr>
+    }
 
 </table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("List",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

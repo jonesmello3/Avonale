@@ -6,6 +6,7 @@ using ProvaAvonale.Domain.Entities.Auxiliar;
 using ProvaAvonale.Domain.Interfaces.Service;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProvaAvonale.ApplicationService.Applications
@@ -28,8 +29,13 @@ namespace ProvaAvonale.ApplicationService.Applications
         {
             try
             {
-                var json = await repositorioService.ListarRepositoriosPublicos();
-                return new Response { Success = true, Data = json };
+                var repositorios = await repositorioService.ListarRepositoriosPublicos();
+                
+                if (repositorios.Any()) {
+                
+                }
+
+                return new Response { Success = true, Data = repositorios.OrderBy(repos => repos.Nome) };
             }
             catch (Exception ex)
             {
