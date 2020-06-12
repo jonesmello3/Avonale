@@ -12,5 +12,6 @@ namespace ProvaAvonale.ApplicationService.Interfaces
         Task<Response> ObterRepositoriosPorId(int id);
         Task<Response> AdicionarRepositorioAosFavoritos(int id);
         Response MostrarFavoritos();
+        Response RemoverFavoritos(int id);
     }
 }

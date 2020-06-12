@@ -26,20 +26,24 @@
     {
         foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    <a href="Detalhes/@item.Id">@Html.DisplayFor(modelItem => item.Nome)</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Privado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descricao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DataAtualizacao)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <a href="Detalhes/@item.Id">@Html.DisplayFor(modelItem => item.Nome)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Privado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataAtualizacao)
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" @Html.ActionLink("Remover", "RemoverFavoritos", new { id = item.Id })>Remover</button>
+                
+            </td>
+        </tr>
         }
     }
 </table>

@@ -25,10 +25,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvaAvonale.CrossCutting",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvaAvonale.WebApi", "ProvaAvonale.WebApi\ProvaAvonale.WebApi.csproj", "{881037B2-58FD-4873-BCAF-00453C5AC4F3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Anticorruption", "5 - Anticorruption", "{928F39BB-D291-4F25-BB7E-97A256FA9EF0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvaAvonale.Anticorruption", "ProvaAvonale.Anticorruption\ProvaAvonale.Anticorruption.csproj", "{9876650C-D7BF-4FE4-A765-D1D1A7FF9EDE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,10 +51,6 @@ Global
 		{881037B2-58FD-4873-BCAF-00453C5AC4F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{881037B2-58FD-4873-BCAF-00453C5AC4F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{881037B2-58FD-4873-BCAF-00453C5AC4F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9876650C-D7BF-4FE4-A765-D1D1A7FF9EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9876650C-D7BF-4FE4-A765-D1D1A7FF9EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9876650C-D7BF-4FE4-A765-D1D1A7FF9EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9876650C-D7BF-4FE4-A765-D1D1A7FF9EDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,7 +63,6 @@ Global
 		{6EEBC177-B769-446F-ACEA-A9BDF24829D3} = {3D49A7A5-98AA-4A81-B870-72B5C2597B4A}
 		{546A44C6-68D2-46EB-961E-2BE730BD4DB8} = {8EE790DC-AB47-4157-84D9-33AFEEADBA70}
 		{881037B2-58FD-4873-BCAF-00453C5AC4F3} = {C1EF0276-2A75-4896-A802-1EFA6F1B6114}
-		{9876650C-D7BF-4FE4-A765-D1D1A7FF9EDE} = {928F39BB-D291-4F25-BB7E-97A256FA9EF0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {880014C4-C4AE-4E8D-8711-3F28B75A40DC}

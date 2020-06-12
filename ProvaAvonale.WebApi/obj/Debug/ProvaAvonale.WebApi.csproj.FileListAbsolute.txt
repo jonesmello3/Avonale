@@ -89,10 +89,8 @@ G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\System.Web.Http.WebHost.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\System.Net.Http.Formatting.xml
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\System.Web.Http.xml
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\System.Web.Http.WebHost.xml
-G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\ProvaAvonale.Anticorruption.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\ProvaAvonale.Domain.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\RestEase.dll
-G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\ProvaAvonale.Anticorruption.pdb
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\ProvaAvonale.Domain.pdb
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\RestEase.xml
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\ProvaAvonale.ApplicationService.dll
@@ -104,7 +102,6 @@ G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\AutoMapper.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\ProvaAvonale.DataAccess.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\System.ValueTuple.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\EntityFramework.dll
-G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\ProvaAvonale.Anticorruption.dll.config
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\ProvaAvonale.CrossCutting.pdb
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\ProvaAvonale.CrossCutting.dll.config
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\SimpleInjector.xml
@@ -122,3 +119,7 @@ G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\SimpleInjector.Integration.
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\SimpleInjector.Integration.Web.Mvc.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\SimpleInjector.Integration.Web.xml
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\SimpleInjector.Integration.Web.Mvc.xml
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\PagedList.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\PagedList.Mvc.dll
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\PagedList.xml
+G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.WebApi\bin\PagedList.Mvc.xml

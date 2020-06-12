@@ -110,7 +110,22 @@ namespace ProvaAvonale.ApplicationService.Applications
             {
                 return new Response { Message = ex.Message, Error = ex };
             }
-        } 
+        }
+        #endregion
+
+        #region RemoverFavoritos
+        public Response RemoverFavoritos(int id)
+        {
+            try
+            {
+                repositorioService.RemoverFavoritos(id);
+                return new Response { Success = true, Data = null };
+            }
+            catch (Exception ex)
+            {
+                return new Response { Message = ex.Message, Error = ex };
+            }
+        }
         #endregion
     }
 }

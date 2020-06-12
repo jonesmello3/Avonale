@@ -1,6 +1,4 @@
-﻿using ProvaAvonale.Anticorruption.Interfaces;
-using ProvaAvonale.Anticorruption.Services;
-using ProvaAvonale.ApplicationService.Applications;
+﻿using ProvaAvonale.ApplicationService.Applications;
 using ProvaAvonale.ApplicationService.Interfaces;
 using ProvaAvonale.DataAccess.Repository;
 using ProvaAvonale.Domain.Interfaces.Repository;
@@ -34,7 +32,6 @@ namespace ProvaAvonale.CrossCutting.SimpleInjector
         {
             container.Register(typeof(IServiceBase<>), typeof(ServiceBase<>).Assembly);
             container.Register<IRepositorioService, RepositorioService>(Lifestyle.Singleton);
-            container.Register<IGitHubService, GitHubService>(Lifestyle.Singleton);
         }
         #endregion
 

@@ -64,9 +64,9 @@ namespace ProvaAvonale.Domain.Services
                 var reposi = JsonConvert.DeserializeObject<List<Repositorio>>(File.ReadAllText(caminho));
 
                 var jsonString = await response.Content.ReadAsStringAsync();
-                var repositorio = JsonConvert.DeserializeObject<List<Repositorio>>(jsonString);
+                var repositorios = JsonConvert.DeserializeObject<List<Repositorio>>(jsonString);
 
-                foreach (var item in repositorio)
+                foreach (var item in repositorios)
                 {
                     foreach (var repos in reposi)
                     {
@@ -76,7 +76,7 @@ namespace ProvaAvonale.Domain.Services
                         }
                     }
                 }
-                return repositorio;
+                return repositorios;
             }
 
             return null;
@@ -109,6 +109,7 @@ namespace ProvaAvonale.Domain.Services
                 {
                     listaRepositorios.Add(new Repositorio
                     {
+                        Id = Convert.ToInt32(repositorio["id"].ToString()),
                         Nome = repositorio["name"].ToString(),
                         NomeCompleto = repositorio["full_name"].ToString(),
                         Privado = repositorio["private"].ToString(),
@@ -122,6 +123,9 @@ namespace ProvaAvonale.Domain.Services
                         LanguagesUrl = repositorio["language"].ToString(),
                     });
                 }
+
+                PreenchendoJson(listaRepositorios);
+
                 return listaRepositorios;
             }
 
@@ -327,7 +331,53 @@ namespace ProvaAvonale.Domain.Services
 
             var repositorios = JsonConvert.DeserializeObject<IEnumerable<Repositorio>>(File.ReadAllText(caminho));
             return repositorios;
-        } 
+        }
         #endregion
+
+        #region RemoverFavoritos
+        public void RemoverFavoritos(int id)
+        {
+            var pathArquivos = DiretorioVirtual.ObterDiretorioVirtual();
+            var nomeArquivo = $"RepositoriosFavoritos.json";
+            var caminho = $"{pathArquivos}{nomeArquivo}";
+            var repositorios = JsonConvert.DeserializeObject<List<Repositorio>>(File.ReadAllText(caminho));
+
+            if (repositorios != null)
+            {
+                var repositorio = repositorios.FirstOrDefault(repos => repos.Id == id);
+                repositorios.Remove(repositorio);
+            }
+           
+
+            var repo = JsonConvert.SerializeObject(repositorios, Formatting.Indented);
+
+            File.Delete(caminho);
+
+            using (var streamReader = new StreamWriter(caminho, true))
+            {
+                streamReader.WriteLine(repo.ToString());
+
+                streamReader.Close();
+            }
+        }
+        #endregion
+
+        private void PreenchendoJson(List<Repositorio> repositorios) {
+            var pathArquivos = DiretorioVirtual.ObterDiretorioVirtual();
+            var nomeArquivo = $"RepositoriosFavoritos.json";
+            var caminho = $"{pathArquivos}{nomeArquivo}";
+            var reposi = JsonConvert.DeserializeObject<List<Repositorio>>(File.ReadAllText(caminho));
+
+            foreach (var item in repositorios)
+            {
+                foreach (var repos in reposi)
+                {
+                    if (item.Id == repos.Id)
+                    {
+                        item.IsFavorito = true;
+                    }
+                }
+            }
+        } 
     }
 }

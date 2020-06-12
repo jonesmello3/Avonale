@@ -12,5 +12,6 @@ namespace ProvaAvonale.Domain.Interfaces.Service
         Task<Repositorio> ObterRepositorioPorId(int id);
         Task<Repositorio> AdicionarRepositorioAosFavoritos(int id);
         IEnumerable<Repositorio> MostrarFavoritos();
+        void RemoverFavoritos(int id);
     }
 }

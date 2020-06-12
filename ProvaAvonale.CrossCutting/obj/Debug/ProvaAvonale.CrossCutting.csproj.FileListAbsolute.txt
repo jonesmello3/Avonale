@@ -4,7 +4,6 @@ G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\ProvaAvonale.Cr
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\ProvaAvonale.CrossCutting.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\ProvaAvonale.CrossCutting.pdb
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\AutoMapper.dll
-G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\ProvaAvonale.Anticorruption.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\ProvaAvonale.ApplicationService.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\ProvaAvonale.DataAccess.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\ProvaAvonale.Domain.dll
@@ -12,8 +11,6 @@ G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\SimpleInjector.
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\System.ValueTuple.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\Newtonsoft.Json.dll
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\EntityFramework.dll
-G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\ProvaAvonale.Anticorruption.pdb
-G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\ProvaAvonale.Anticorruption.dll.config
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\ProvaAvonale.ApplicationService.pdb
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\ProvaAvonale.DataAccess.pdb
 G:\ProvaAvonale\ProvaAvonale\ProvaAvonale.CrossCutting\bin\Debug\ProvaAvonale.DataAccess.dll.config

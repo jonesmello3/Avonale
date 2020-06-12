@@ -83,10 +83,6 @@
     <Compile Include="SimpleInjector\SimpleInjectorContainer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProvaAvonale.Anticorruption\ProvaAvonale.Anticorruption.csproj">
-      <Project>{9876650C-D7BF-4FE4-A765-D1D1A7FF9EDE}</Project>
-      <Name>ProvaAvonale.Anticorruption</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ProvaAvonale.ApplicationService\ProvaAvonale.ApplicationService.csproj">
       <Project>{A4EA2593-4DB5-4C96-9232-8BE0D8803367}</Project>
       <Name>ProvaAvonale.ApplicationService</Name>

@@ -6,9 +6,6 @@
 
     <h2>Repositórios Usuário</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -27,7 +24,7 @@
     <tr>
         <td>
             <a href="Detalhes/@item.Id">@Html.DisplayFor(modelItem => item.Nome)</a>
-</td>
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Privado)
         </td>
