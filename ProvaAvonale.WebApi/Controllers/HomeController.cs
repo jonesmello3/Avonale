@@ -96,12 +96,20 @@ namespace ProvaAvonale.WebApi.Controllers
         #endregion
 
         #region MostrarFavoritos
-        public ActionResult MostrarFavoritos()
+        public ActionResult Favoritos()
         {
             var repositorio = repositorioApplicationService.MostrarFavoritos();
-            var result = ((IEnumerable<Repositorio>)repositorio.Data).Cast<Repositorio>().ToList();
-            var clienteViewModel = Mapper.Map<IEnumerable<Repositorio>, IEnumerable<RepositorioViewModel>>(result);
-            return View(clienteViewModel);
+            if (repositorio.Data != null)
+            {
+                var result = ((IEnumerable<Repositorio>)repositorio.Data).Cast<Repositorio>().ToList();
+                var clienteViewModel = Mapper.Map<IEnumerable<Repositorio>, IEnumerable<RepositorioViewModel>>(result);
+                return View(clienteViewModel);
+            }
+            else
+            {
+                return View();
+            }
+            
         }
         #endregion
     }

@@ -101,7 +101,15 @@ namespace ProvaAvonale.ApplicationService.Applications
         #region MostrarFavoritos
         public Response MostrarFavoritos()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var repositorios = repositorioService.MostrarFavoritos();
+                return new Response { Success = true, Data = repositorios };
+            }
+            catch (Exception ex)
+            {
+                return new Response { Message = ex.Message, Error = ex };
+            }
         } 
         #endregion
     }

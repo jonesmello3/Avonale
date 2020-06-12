@@ -7,10 +7,12 @@ using ProvaAvonale.Domain.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 
 namespace ProvaAvonale.Domain.Services
 {
@@ -270,12 +272,30 @@ namespace ProvaAvonale.Domain.Services
             var nomeArquivo = $"RepositoriosFavoritos.json";
             var repositorio = await ObterRepositorioPorId(id);
             var caminho = $"{pathArquivos}{nomeArquivo}";
+            var repositorios = JsonConvert.DeserializeObject<List<Repositorio>>(File.ReadAllText(caminho));
 
-            using (StreamWriter r = File.CreateText(caminho))
+            if (repositorio != null)
             {
-                var json = JsonConvert.SerializeObject(repositorio);
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(r, json);
+                if (repositorios == null)
+                {
+                    repositorios = new List<Repositorio>();
+                    repositorios.Add(repositorio);
+                }
+                else
+                {
+                    repositorios.Add(repositorio);
+                }
+
+                var repo = JsonConvert.SerializeObject(repositorios, Formatting.Indented);
+
+                File.Delete(caminho);
+
+                using (var streamReader = new StreamWriter(caminho, true))
+                {
+                    streamReader.WriteLine(repo.ToString());
+
+                    streamReader.Close();
+                }
             }
 
             return repositorio;
@@ -285,7 +305,12 @@ namespace ProvaAvonale.Domain.Services
         #region MostrarFavoritos
         public IEnumerable<Repositorio> MostrarFavoritos()
         {
-            throw new NotImplementedException();
+            var pathArquivos = DiretorioVirtual.ObterDiretorioVirtual();
+            var nomeArquivo = $"RepositoriosFavoritos.json";
+            var caminho = $"{pathArquivos}{nomeArquivo}";
+
+            var repositorios = JsonConvert.DeserializeObject<IEnumerable<Repositorio>>(File.ReadAllText(caminho));
+            return repositorios;
         } 
         #endregion
     }
