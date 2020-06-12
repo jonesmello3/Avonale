@@ -86,8 +86,13 @@ namespace ProvaAvonale.WebApi.Controllers
         #endregion
 
         #region AdicionarRepositorioAosFavoritos
-        public async Task<ActionResult> AdicionarRepositorioAosFavoritos(int id)
+        public async Task<ActionResult> AdicionarRepositorioAosFavoritos(int id, FormCollection collection)
         {
+            if (!string.IsNullOrEmpty(collection["checkboxfavorito"]))
+            {
+                string checkResp = collection["checkboxfavorito"];
+                bool checkRespB = Convert.ToBoolean(checkResp);
+            }
             var repositorio = await repositorioApplicationService.AdicionarRepositorioAosFavoritos(id);
             var t = (Repositorio)Convert.ChangeType(repositorio.Data, typeof(Repositorio));
             var clienteViewModel = Mapper.Map<Repositorio, RepositorioViewModel>(t);
@@ -96,7 +101,7 @@ namespace ProvaAvonale.WebApi.Controllers
         #endregion
 
         #region MostrarFavoritos
-        public ActionResult Favoritos()
+        public ActionResult MostrarFavoritos()
         {
             var repositorio = repositorioApplicationService.MostrarFavoritos();
             if (repositorio.Data != null)

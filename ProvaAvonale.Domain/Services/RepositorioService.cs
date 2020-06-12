@@ -58,8 +58,24 @@ namespace ProvaAvonale.Domain.Services
 
             if (response.IsSuccessStatusCode)
             {
+                var pathArquivos = DiretorioVirtual.ObterDiretorioVirtual();
+                var nomeArquivo = $"RepositoriosFavoritos.json";
+                var caminho = $"{pathArquivos}{nomeArquivo}";
+                var reposi = JsonConvert.DeserializeObject<List<Repositorio>>(File.ReadAllText(caminho));
+
                 var jsonString = await response.Content.ReadAsStringAsync();
                 var repositorio = JsonConvert.DeserializeObject<List<Repositorio>>(jsonString);
+
+                foreach (var item in repositorio)
+                {
+                    foreach (var repos in reposi)
+                    {
+                        if (item.Id == repos.Id)
+                        {
+                            item.IsFavorito = true;
+                        }
+                    }
+                }
                 return repositorio;
             }
 

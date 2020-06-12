@@ -55,8 +55,16 @@
             <input type="checkbox" id="favoritos" name="favoritos" class="form-group" />
         }*@
         @{ var url = Url.Action("AdicionarRepositorioAosFavoritos", "Home", new { id = item.Id }, null);
+            if (item.IsFavorito)
+            {
+                @Html.CheckBox("checkboxfavorito", new { @checked = true, onclick = "window.location = '" + url + "'" })
+            }
+            else
+            {
+                @Html.CheckBox("checkboxfavorito", new { onclick = "window.location = '" + url + "'" })
+            }
+
         }
-        @Html.CheckBox("mycheckbox", new { onclick = "window.location = '" + url + "'" })
     </td>
 </tr>
 }
